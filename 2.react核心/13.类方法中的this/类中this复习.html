@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Perosn {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            speak() {
+                console.log(this);
+            }
+        }
+        const p1 = new Perosn('dk', 18);
+        p1.speak(); // 输出的就是Perosn实例对象p1
+
+        const a = p1.speak;
+        a();    // 输出undefined，为什么不是window？
+        // 类中的方法都局部开启了严格模式，this不能指向window，所以this是undefined
+    </script>
+</body>
+
+</html>

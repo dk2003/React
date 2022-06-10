@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app1"></div>
+    <div id="app2"></div>
+    <div id="app3"></div>
+
+    <script src="../../lib/react/react.development.js"></script>
+    <script src="../../lib/react/react-dom.development.js"></script>
+    <!-- 引入prop-types对组件标签属性进行限制 -->
+    <script src="../../lib/react全家桶资料/03_依赖包/新版本/prop-types.js"></script>
+    <script src="../../lib/react/babel.min.js"></script>
+    <script type="text/babel">
+        // 1. 创建组件
+        class Person extends React.Component{
+            state={
+                name:'tom',
+                age:18,
+                sex:'男'
+            }
+            render(){
+                return (
+                    <ul>
+                        <li>姓名:{this.props.name}</li>
+                        <li>性别:{this.props.sex}</li>
+                        <li>年龄:{this.props.age+1}</li>    
+                    </ul>
+                )
+            }
+        }
+        // 指定必要性和类型
+        Person.propTypes ={
+            // name:React.PropTypes.string,
+            age:PropTypes.string.isRequired,
+            // 在react15之后React.PropTypes这种判断类型的形式被弃用了
+            // react16及之后PropTypes的使用需要另外引入
+            // string表示需要一个字符串，isRequired表示必须传递
+            sex: PropTypes.string,
+            speak: PropTypes.func
+            // 为什么要写func而不是function？防止与js中的function关键字产生冲突
+        }
+        // 指定默认值
+        Person.defaultProps={
+            sex:'不男不女',
+            age:99
+        }
+        ReactDOM.render(<Person {...{name : 'Tom',age:18,sex:'男'}}/>, document.getElementById("app1"))
+        ReactDOM.render(<Person name='Tom1' age={19} />, document.getElementById("app2"))
+        ReactDOM.render(<Person name='Tom2' sex='男2' speak={speak}/>, document.getElementById("app3"))
+        function speak(){
+            console.log(speak);
+        }
+
+
+    </script>
+</body>
+
+</html>

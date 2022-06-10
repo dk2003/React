@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../lib/react/react.development.js"></script>
+    <script src="../../lib/react/react-dom.development.js"></script>
+    <script src="../../lib/react全家桶资料/03_依赖包/新版本/prop-types.js"></script>
+    <script src="../../lib/react/babel.min.js"></script>
+    <script type="text/babel">
+        // 1. 创建组件
+        class Demo extends React.Component {
+            state={
+                isHot:true
+            }
+            showInfo=()=>{
+                console.log(this.input.value);
+            }
+            showInfo1 = () => {
+                console.log(this.input.value);
+            }
+            change=()=>{
+                const { isHot } = this.state;
+                this.setState({
+                    isHot:!isHot
+                })
+            }
+            saveInput=c=>{ this.input1 = c;console.log('@1');}
+            render() {
+                const {isHot} = this.state;
+                return (
+                    <div>
+                        <h2>{isHot?'炎热':'凉爽'}</h2>
+                        {<input type="text" ref={c=>{this.input=c;console.log('@',c)}}/>}
+                        <button onClick={this.showInfo}>点我提示数据</button>
+                        <br />
+                        <button onClick={this.change}>点我切换天气</button>
+                        <br />
+                        {<input type="text" ref={this.saveInput} />}
+                        <button onClick={this.showInfo1}>点我提示数据</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo />, document.getElementById('app'))
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div onclick='test()' id='box'>点击回调</div>
+    <!-- <div id='box'>点击回调</div> -->
+    <script>
+        function test(){
+            console.log('onclick="test()"',this);
+            // this指向window
+        }
+        document.getElementById('box').addEventListener('click', function(){
+            // this指向div.box
+            console.log('addEventListener',this);
+        })
+        document.getElementById('box').onclick = function(){
+            // this指向div.box
+            console.log('onclick',this);
+        }
+    </script>
+</body>
+</html>

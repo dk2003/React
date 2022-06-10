@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建一个Perosn类
+        class Person{
+            constructor(name,age){
+                this.name=name;
+                this.age = age;
+            }
+            // 一般方法
+            // 放置于类的显示原型上,供实例使用
+            speak(){
+                console.log(`我叫${this.name},今年${this.age}`);
+                // this是实例对象
+            }
+        }        
+        const p1=new Person('dk',18);
+        const p2=new Person('jlz',20)
+        console.log(p1,p2);
+        p1.speak();
+        p2.speak();
+        p1.__proto__.speak();
+        p1.__proto__.speak.call(p1);
+
+        // 创建一个student继承与perosn
+        class Student extends Person{
+            constructor(name,age,grade){
+                super(name,age);
+                this.grade= grade;
+            }
+            // 重写继承方法
+            speak(){
+                console.log(`我叫${this.name},今年${this.age},读${this.grade}`);
+            }
+            stduy(){
+                console.log('goodgoodStudy');
+            }
+        }
+        const s1=new Student('lzz',22,'D1');
+        console.log(s1);
+        s1.speak();
+        s1.stduy();
+
+        const a={
+            b:{
+                bb:1,
+                c(){
+                    console.log(this);
+                }
+            }
+        }
+        a.b.c();
+    </script>
+</body>
+</html>

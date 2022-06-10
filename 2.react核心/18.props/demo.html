@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app1"></div>
+    <div id="app2"></div>
+    <div id="app3"></div>
+
+    <script src="../../lib/react/react.development.js"></script>
+    <script src="../../lib/react/react-dom.development.js"></script>
+    <script src="../../lib/react/babel.min.js"></script>
+    <script type="text/babel">
+        // 1. 创建组件
+        class Person extends React.Component{
+            state={
+                name:'tom',
+                age:18,
+                sex:'男'
+            }
+            render(){
+                return (
+                    <ul>
+                        <li>姓名:{this.props.name}</li>
+                        <li>性别:{this.props.sex}</li>
+                        <li>年龄:{this.props.age}</li>    
+                    </ul>
+                )
+            }
+        }
+        ReactDOM.render(<Person name='Tom' age='18' sex='男'/>, document.getElementById("app1"))
+        ReactDOM.render(<Person name='Tom1' age='19' sex='男1'/>, document.getElementById("app2"))
+        ReactDOM.render(<Person name='Tom2' age='20' sex='男2'/>, document.getElementById("app3"))
+
+
+
+    </script>
+</body>
+
+</html>

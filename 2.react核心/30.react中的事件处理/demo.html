@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../lib/react/react.development.js"></script>
+    <script src="../../lib/react/react-dom.development.js"></script>
+    <script src="../../lib/react全家桶资料/03_依赖包/新版本/prop-types.js"></script>
+    <script src="../../lib/react/babel.min.js"></script>
+    <script type="text/babel">
+        class Demo extends React.Component {
+            myRef = React.createRef();
+            myRef1 = React.createRef();
+            showInfo = () => {
+                console.log(this.myRef.current.value)
+            }
+            showInfo1 = (e) => {
+                console.log(e.target.value)
+            }
+            render() {
+                return (
+                    <div>
+                        <input type="text" ref={this.myRef} />
+                        <button onClick={this.showInfo}>点我提示数据</button>
+                        <input type="text" ref={this.myRef1} onBlur={this.showInfo1}/>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo />, document.getElementById('app'))
+
+
+    </script>
+</body>
+
+</html>

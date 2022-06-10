@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../lib/react/react.development.js"></script>
+    <script src="../../lib/react/react-dom.development.js"></script>
+    <script src="../../lib/react全家桶资料/03_依赖包/新版本/prop-types.js"></script>
+    <script src="../../lib/react/babel.min.js"></script>
+    <script type="text/babel">
+        // 1. 创建组件
+        class Demo extends React.Component {
+            myRef= React.createRef();
+            myRef1= React.createRef();
+            /* 
+                React.createRef调用之后可以返回一个容器，该容器可以【唯一】存储被ref所标识的节点
+            */
+            showInfo=()=>{
+                console.log(this.myRef)
+                console.log(this.myRef1)
+            }
+            render() {
+                return (
+                    <div>
+                        {<input type="text" ref={this.myRef}/>}
+                        <button onClick={this.showInfo} ref={this.myRef1}>点我提示数据</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo />, document.getElementById('app'))
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+# 新生命周期
+1. 初始化：由ReactDOM.render()触发————初次渲染
+   1. constructor
+   2. getDerivedStateFromProps
+   3. render
+   4. componentDidMount
+2. 更新阶段：由组件内部this.render或者父组件重新render触发
+   1. getDerivedStateFromProps
+   2. shouldComponentUpdate
+   3. render
+   4. getSnapshotBeforeUpdate
+   5. componentDidUpdate
+3. 卸载阶段：由ReactDOM.unmountComponentAtNode触发
+   1. componentWillUnmount

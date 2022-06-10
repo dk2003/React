@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+    <style>
+        .list {
+            background-color: orange;
+            width: 200px;
+            height: 150px;
+            overflow: auto;
+        }
+        .news{
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="../../lib/react全家桶资料/03_依赖包/新版本/react.development.js"></script>
+    <script src="../../lib/react全家桶资料/03_依赖包/新版本/react-dom.development.js"></script>
+    <script src="../../lib/react全家桶资料/03_依赖包/新版本/prop-types.js"></script>
+    <script src="../../lib/react全家桶资料/03_依赖包/新版本/babel.min.js"></script>
+    <script type='text/babel'>
+        class NewsList extends React.Component {
+            state={
+                newsArr:[]
+            }
+            ref1=React.createRef();
+            componentDidMount() {
+                setInterval(() =>{
+                    const {newsArr}=this.state;
+                    const news='新闻'+(newsArr.length+1);
+                    this.setState({newsArr: [news,...newsArr]});
+                },1000)
+            }
+            getSnapshotBeforeUpdate() {
+                const { scrollTop,scrollHeight}=this.ref1.current;
+                return { prevScrollTop: scrollTop, prevScrollHeight: scrollHeight}
+            }
+            componentDidUpdate(prevProps,prevState,{ prevScrollTop, prevScrollHeight}){
+                const { scrollTop, scrollHeight } = this.ref1.current
+                this.ref1.current.scrollTop= prevScrollTop+ scrollHeight- prevScrollHeight;
+            }
+            render() {
+                const {newsArr}=this.state;
+                return (
+                    <div className="list" ref={this.ref1}>
+                        {newsArr.map((item,index)=><div className="news" key={index}>{item}</div>)}
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<NewsList/>,document.getElementById("app"))
+
+    </script>
+</body>
+
+</html>

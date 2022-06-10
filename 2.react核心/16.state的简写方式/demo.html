@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script src="../../lib/react/react.development.js"></script>
+    <script src="../../lib/react/react-dom.development.js"></script>
+    <script src="../../lib/react/babel.min.js"></script>
+    <script type="text/babel">
+        class Demo extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+            // 类中可以直接写赋值语句，表示为类的实例对象添加属性
+            state = {
+                isHot: true,
+                wind: 'big'
+            }
+            // 自定义方法：要用赋值语句+箭头函数
+            demo=()=>{
+                console.log(this);
+                this.setState({
+                    isHot: !this.state.isHot
+                })
+            }
+            render() {
+                return <h2 onClick={this.demo}>今天天气很{this.state.isHot ? '炎热' : '凉爽'},{this.state.wind}</h2>
+            }
+        }
+        ReactDOM.render(<Demo />, document.getElementById("test"));
+
+
+    </script>
+</body>
+
+</html>

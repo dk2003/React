@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="../../lib/react/react.development.js"></script>
+    <script src="../../lib/react/react-dom.development.js"></script>
+    <script src="../../lib/react全家桶资料/03_依赖包/新版本/prop-types.js"></script>
+    <script src="../../lib/react/babel.min.js"></script>
+    <script type="text/babel">
+        // 1. 创建组件
+        class Demo extends React.Component {
+
+            showData=()=>{
+                console.log(this.refs.input1.value);            
+            }
+            showData1=()=>{
+                console.log(this.refs.input2.value);
+            }
+            // 通过refs获得的是真实dom，不是虚拟dom
+            render() {
+                return (
+                    <div>
+                        <input type="text" placeholder="点击按钮提示数据" ref='input1'/>    
+                        <button onClick={this.showData}>点我提示数据</button>
+                        <input type="text" placeholder="失去焦点提示数据" onBlur={this.showData1} ref='input2' />
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo />, document.getElementById('app'))
+
+
+    </script>
+</body>
+
+</html>

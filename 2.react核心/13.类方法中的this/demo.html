@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello_react</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+    <script src="../../lib/react/react.development.js"></script>
+    <script src="../../lib/react/react-dom.development.js"></script>
+    <script src="../../lib/react/babel.min.js"></script>
+    <script type="text/babel">
+        // 1. 创建函数式组件
+        class Demo extends React.Component {
+            constructor(props) {
+                // constructor中的this是组件实例对象
+                super(props);
+                // 初始化状态
+                this.state = {
+                    isHot: true
+                }
+            }
+            demo(){
+                // 不进行this绑定，this是undefined
+                // 由于demo是作为onClick的回调，所以demo事件回调并不是由组件实例调用的，是直接调用
+                // 类中的方法默认开启了局部严格，所以demo中this也不指向window，而是undefined
+                console.log(this);
+            }
+            render() {
+                // render中的this就是组件实例对象
+                return <h2 onClick={this.demo.bind(this)}>今天天气很{this.state.isHot ? '炎热' : '凉爽'}</h2>
+            }
+        }
+        // 2. 渲染组件到页面
+        ReactDOM.render(<Demo />, document.getElementById("test"));
+
+
+    </script>
+</body>
+
+</html>
